@@ -1,0 +1,24 @@
+{
+  "name": "apoloserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "apollo",
+    "graphql"
+  ],
+  "author": "George Chokhonelidze",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^3.8.1",
+    "dotenv": "^16.0.1",
+    "graphql": "^16.5.0",
+    "mongoose": "^6.3.5",
+    "nodemon": "^2.0.16",
+    "reactstrap": "^9.0.3"
+  }
+}
