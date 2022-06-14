@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 
@@ -12,6 +12,5 @@ const indexesSchema = new Schema({
   }
 });
 
-const indexes = mongoose.model("indexes",indexesSchema);
+export const indexes = mongoose.model("indexes",indexesSchema);
 
-module.exports = {indexes};
