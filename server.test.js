@@ -50,7 +50,6 @@ const testServer = new ApolloServer({
 });
 beforeAll(() => {
   mongoose.connect(DB, { useNewUrlParser: true });
-  console.log('server ='+DB)
 });
 afterAll(() => {
   testServer.stop();
