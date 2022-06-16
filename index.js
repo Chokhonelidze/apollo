@@ -15,6 +15,8 @@ const DB = process.env.DB
   ? process.env.DB
   : "mongodb://mongo:27017/app_development";
 
+  const PORT = process.env.PORT || 4002;
+
 
 const types = [];
 const queries = [];
@@ -72,7 +74,7 @@ const server = new ApolloServer({
 
 // The `listen` method launches a web server.
 mongoose.connect(DB, { useNewUrlParser: true }).then(() => {
-  server.listen().then(({ url }) => {
+  server.listen(PORT).then(({ url }) => {
     console.log(`🚀  Server ready at ${url}`);
   });
 });
