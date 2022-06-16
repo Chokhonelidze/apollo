@@ -4,6 +4,10 @@
 //const {dishes} = require("./models/dishes");
 //const mongoose = require("mongoose");
 import {ApolloServer,gql} from "apollo-server";
+import {
+  ApolloServerPluginLandingPageLocalDefault,
+  ApolloServerPluginLandingPageProductionDefault
+} from "apollo-server-core";
 import mongoose from "mongoose";
 import * as Dishes from "./schemas/Dishes.js";
 import * as Restaurants from "./schemas/Restaurants.js";
@@ -70,6 +74,16 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   csrfPrevention: true,
+  cache: "bounded",
+  plugins: [
+    // Install a landing page plugin based on NODE_ENV
+    process.env.NODE_ENV === "production"
+      ? ApolloServerPluginLandingPageProductionDefault({
+          graphRef: "My-Graph-zz9m3@current",
+          footer: false,
+        })
+      : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+  ],
 });
 
 // The `listen` method launches a web server.
