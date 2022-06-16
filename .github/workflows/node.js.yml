@@ -13,14 +13,12 @@ jobs:
       matrix:
 
         node_version: [12.x]
+    env:
+      DB: ${{ secrets.DB }}
 
     steps:
 
       - uses: actions/checkout@v2
-      - name: create env file
-        run: | 
-          touch .env
-          echo DB=${{secrets.DB}} >> .env
 
       - name: Use Node.js ${{ matrix.node-version }}
 
