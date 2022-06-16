@@ -11,7 +11,7 @@ const DB = process.env.DB
   ? process.env.DB
   : "mongodb://mongo:27017/app_development";
 
-  
+
 const types = [];
 const queries = [];
 const mutations = [];
@@ -51,6 +51,7 @@ const testServer = new ApolloServer({
 });
 beforeAll(() => {
   mongoose.connect(DB, { useNewUrlParser: true });
+  console.log(DB+' connected');
 });
 afterAll(() => {
   testServer.stop();
