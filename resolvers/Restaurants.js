@@ -7,7 +7,6 @@ export const query = {
           const { limit, offset, search, id } = args.input;
           data = await restaurant.find().limit(limit).skip(offset);
           if (id) {
-            const regex = new RegExp(search, "i");
             data = data.filter((item)=>{
               if(Number(item.id) === Number(id)) return item;
             });

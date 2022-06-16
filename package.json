@@ -8,7 +8,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles server.test.js",
+    "test": "jest server.test.js",
     "start": "nodemon index.js"
   },
   "keywords": [
@@ -19,8 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server": "^3.8.1",
+    "apollo-server-testing": "^2.25.3",
     "dotenv": "^16.0.1",
-    "graphql": "^16.5.0",
     "jest": "^28.1.1",
     "mongoose": "^6.3.5",
     "nodemon": "^2.0.16",
