@@ -59,8 +59,6 @@ const resolvers = {
     resolverQueries
   ,
   Mutation: resolverMutations
-  
-
 };
 console.log(resolvers);
 

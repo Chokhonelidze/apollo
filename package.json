@@ -1,11 +1,14 @@
 {
   "name": "apoloserver",
   "type": "module",
+  "jest": {
+    "verbose": true
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --detectOpenHandles server.test.js",
     "start": "nodemon index.js"
   },
   "keywords": [
@@ -18,8 +21,13 @@
     "apollo-server": "^3.8.1",
     "dotenv": "^16.0.1",
     "graphql": "^16.5.0",
+    "jest": "^28.1.1",
     "mongoose": "^6.3.5",
     "nodemon": "^2.0.16",
-    "reactstrap": "^9.0.3"
+    "reactstrap": "^9.0.3",
+    "supertest": "^6.2.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2"
   }
 }
