@@ -2,6 +2,9 @@ name: npm test
 
 on: [push]
 
+env:
+  DB: ${{ secrets.DB }}
+
 jobs:
 
   test:
@@ -13,8 +16,6 @@ jobs:
       matrix:
 
         node_version: [12.x]
-    env:
-      DB: ${{ secrets.DB }}
 
     steps:
 
