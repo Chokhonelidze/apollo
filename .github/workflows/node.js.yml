@@ -2,9 +2,6 @@ name: npm test
 
 on: [push]
 
-env:
-  DB: ${{ secrets.DB }}
-
 jobs:
 
   test:
@@ -26,7 +23,7 @@ jobs:
         uses: actions/setup-node@v1
 
         with:
-
+          DB: ${{ secrets.DB }}
           node-version: ${{ matrix.node-version }}
       - run: npm install
 
