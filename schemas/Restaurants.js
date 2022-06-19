@@ -4,7 +4,7 @@ type Restaurant {
     name: String
     description: String
     image: String
-    dishes: [String]
+    dishes: [ID]
   }
 
   input restaurantQueryInput {
@@ -17,7 +17,7 @@ type Restaurant {
     name: String
     description: String
     image: String
-    dishes: [String]
+    dishes: [ID]
   }
 
   input updateRestaurant {
@@ -25,7 +25,7 @@ type Restaurant {
     name: String
     description: String
     image: String
-    dishes: [String]
+    dishes: [ID]
   }
 
   type deleteRestaurant {
