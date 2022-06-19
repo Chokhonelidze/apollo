@@ -16,6 +16,7 @@ export const types = `
     search: String
   }
   input createDish {
+    id:ID
     name: String
     description: String
     image: String

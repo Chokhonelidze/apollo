@@ -11,8 +11,10 @@ import {
 import mongoose from "mongoose";
 import * as Dishes from "./schemas/Dishes.js";
 import * as Restaurants from "./schemas/Restaurants.js";
+import * as Accounts from "./schemas/Accounts.js"
 import * as DishesResolver from "./resolvers/Dishes.js";
 import * as RestaurantsResolver from "./resolvers/Restaurants.js";
+import * as AccountsResolver from "./resolvers/Accounts.js";
 import {} from 'dotenv/config';
 
 const DB = process.env.DB
@@ -30,11 +32,13 @@ let resolverMutations = [];
 
 const schemas = [
 Dishes,
-Restaurants
+Restaurants,
+Accounts
 ];
 const resolver = [
   DishesResolver,
-  RestaurantsResolver
+  RestaurantsResolver,
+  AccountsResolver
 ];
 
 

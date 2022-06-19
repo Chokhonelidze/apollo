@@ -45,7 +45,6 @@ export const mutation = {
           image: args.input.image,
           price: Number(args.input.price)
         }
-        console.log(obj); 
         let out = await dishes.create(obj);
         return out;
       },
