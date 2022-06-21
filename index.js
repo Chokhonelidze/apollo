@@ -11,11 +11,14 @@ import {
 import mongoose from "mongoose";
 import * as Dishes from "./schemas/Dishes.js";
 import * as Restaurants from "./schemas/Restaurants.js";
-import * as Accounts from "./schemas/Accounts.js"
+import * as Accounts from "./schemas/Accounts.js";
+import * as Orders from "./schemas/Orders.js";
 import * as DishesResolver from "./resolvers/Dishes.js";
 import * as RestaurantsResolver from "./resolvers/Restaurants.js";
 import * as AccountsResolver from "./resolvers/Accounts.js";
+import * as OrderResolver from "./resolvers/Orders.js";
 import {} from 'dotenv/config';
+import  jwt from "jsonwebtoken";
 
 const DB = process.env.DB
   ? process.env.DB
@@ -33,12 +36,14 @@ let resolverMutations = [];
 const schemas = [
 Dishes,
 Restaurants,
-Accounts
+Accounts,
+Orders
 ];
 const resolver = [
   DishesResolver,
   RestaurantsResolver,
-  AccountsResolver
+  AccountsResolver,
+  OrderResolver
 ];
 
 
@@ -63,7 +68,6 @@ const typeDefs = gql`
 `;
 
 
-
 const resolvers = {
   Query: 
     resolverQueries
@@ -79,6 +83,22 @@ const server = new ApolloServer({
   resolvers,
   csrfPrevention: true,
   cache: "bounded",
+  context:  async ({ req }) => {
+    const authHeader = req.headers.authorization || '';
+    const accessTokenSecret = 'somerandomaccesstoken';
+    if(authHeader) {
+      const sp = authHeader.split(' ');
+      const loginUser= sp[0];
+      const token = sp[1]; 
+     return await jwt.verify(token, accessTokenSecret, (err, user) => {
+        if (err) {
+            return null;
+        }
+        return {user};
+    });
+    }
+
+  },
   plugins: [
     // Install a landing page plugin based on NODE_ENV
     process.env.NODE_ENV === "production"

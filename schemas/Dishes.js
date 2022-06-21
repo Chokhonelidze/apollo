@@ -4,7 +4,7 @@ export const types = `
     name: String
     description: String
     image: String
-    price: Int
+    price: Float
   }
   type createID {
     id:ID
@@ -20,14 +20,14 @@ export const types = `
     name: String
     description: String
     image: String
-    price: Int
+    price: Float
   }
   input updateDish {
     id:ID
     name: String
     description: String
     image: String
-    price: Int
+    price: Float
   }
   input deleteDish {
     id: ID!

@@ -29,10 +29,21 @@ export const types = `
   input deleteAccount {
     id: ID!
   }
+  input accountInput{
+    user:String!
+  }
+  input payment {
+    id:ID!
+    value: Float!
+  }
 `;
 
 
 
+export const queries = `
+    getAccount(input:accountInput) : Account
+`;
 export const mutations = `
     createAccount(input: createAccount) : Account
+    pay(input: payment): Account
 `;

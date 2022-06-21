@@ -4,7 +4,11 @@ import { ApolloError } from 'apollo-server-errors';
 
 
 export const query  ={
-
+  getAccount: async (_,args,context) => {
+    if (!context.user) return null;
+    const acc = account.findOne({name:args.input.user});
+    return acc;
+  }
 }
 export const mutation = {
     createAccount: async(_,args) => {
@@ -42,5 +46,17 @@ export const mutation = {
 
         }
        
+    },
+    pay : async (_,args,context) => {
+      if(args.input){
+        const payment = args.input.value;
+        const id = args.input.id;
+        let obj = await account.findOne({id:id});
+        if(obj.deposit > payment) {
+          obj.deposit = obj.deposit - payment;
+          obj.save();
+        }
+        return obj;
+      }
     }
 }
