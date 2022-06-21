@@ -26,8 +26,8 @@ export const query = {
 }
 
 export const mutation = {
-    createRestaurant: async (_, args) => {
-        console.log(args);
+    createRestaurant: async (_, args,context,info) => {
+        if (!context.user.role ==='admin') return null;
         let index = await indexes.findOne({ id: "restaurants" });
         if (!index) {
           index = new indexes({
@@ -47,7 +47,8 @@ export const mutation = {
         let out = await restaurant.create(obj);
         return out;
       },
-      updateRestaurant: async (_,args) => {
+      updateRestaurant: async (_,args,context) => {
+        if (!context.user.role ==='admin') return null;
         let obj = await restaurant.findOne({id:args.input.id});
         args.input.name?obj.name = args.input.name:'';
         args.input.description?obj.description = args.input.description:'';
@@ -56,7 +57,8 @@ export const mutation = {
         obj.save();
         return obj;
       },
-      deleteRestaurant: async (_,args) => {
+      deleteRestaurant: async (_,args,context) => {
+        if (!context.user.role ==='admin') return null;
         let id = await restaurant.findOneAndDelete(args.id);
         return id;
       }

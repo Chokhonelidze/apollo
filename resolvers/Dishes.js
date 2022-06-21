@@ -27,7 +27,8 @@ export const query = {
     }
 }
 export const mutation = {
-    createDish: async(_,args) => {
+    createDish: async(_,args,context) => {
+      if (!context.user.role ==='admin') return null;
         let index = await indexes.findOne({ id: "dishes" });
         
         if (!index) {
@@ -45,11 +46,11 @@ export const mutation = {
           image: args.input.image,
           price: Number(args.input.price)
         }
-        console.log(obj); 
         let out = await dishes.create(obj);
         return out;
       },
-      updateDish: async (_,args)=>{
+      updateDish: async (_,args,context)=>{
+        if (!context.user.role ==='admin') return null;
         let obj = await dishes.findOne({id:args.input.id});
         args.input.name?obj.name = args.input.name:'';
         args.input.description?obj.description = args.input.description:'';
@@ -58,7 +59,8 @@ export const mutation = {
         obj.save();
         return obj;
       },
-      deleteDish: async (_,args) =>{
+      deleteDish: async (_,args,context) =>{
+        if (!context.user.role ==='admin') return null;
         let id = await dishes.findOneAndDelete(args.input.id);
         return id;
       }

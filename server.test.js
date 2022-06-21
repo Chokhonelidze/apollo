@@ -11,6 +11,8 @@ const DB = process.env.DB
   ? process.env.DB
   : "mongodb://mongo:27017/app_development";
 
+  console.log("Server = "+DB);
+
 const types = [];
 const queries = [];
 const mutations = [];

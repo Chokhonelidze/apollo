@@ -18,7 +18,7 @@ const restaurantSchema = new Schema({
     type: String,
   },
   dishes: {
-    type: [[Number]],
+    type: [Number],
   },
 });
 
