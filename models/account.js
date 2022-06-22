@@ -13,4 +13,4 @@ const schema = Schema({
     collection : 'accounts'
 })
 
-export const account = mongoose.model("accounts",schema);
+export const account = mongoose.model("account",schema);
