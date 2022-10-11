@@ -13,10 +13,13 @@ import * as Dishes from "./schemas/Dishes.js";
 import * as Restaurants from "./schemas/Restaurants.js";
 import * as Accounts from "./schemas/Accounts.js";
 import * as Orders from "./schemas/Orders.js";
+import * as Ratings from "./schemas/Ratings.js";
+import * as RatingsResolver from "./resolvers/Ratings.js";
 import * as DishesResolver from "./resolvers/Dishes.js";
 import * as RestaurantsResolver from "./resolvers/Restaurants.js";
 import * as AccountsResolver from "./resolvers/Accounts.js";
 import * as OrderResolver from "./resolvers/Orders.js";
+
 import {} from 'dotenv/config';
 import  jwt from "jsonwebtoken";
 
@@ -37,13 +40,15 @@ const schemas = [
 Dishes,
 Restaurants,
 Accounts,
-Orders
+Orders,
+Ratings
 ];
 const resolver = [
   DishesResolver,
   RestaurantsResolver,
   AccountsResolver,
-  OrderResolver
+  OrderResolver,
+  RatingsResolver
 ];
 
 
@@ -86,18 +91,21 @@ const server = new ApolloServer({
   context:  async ({ req }) => {
     const authHeader = req.headers.authorization || '';
     const accessTokenSecret = 'somerandomaccesstoken';
+    let output = {};
+    output.ip = req.socket.remoteAddress;
     if(authHeader) {
       const sp = authHeader.split(' ');
       const loginUser= sp[0];
       const token = sp[1]; 
-     return await jwt.verify(token, accessTokenSecret, (err, user) => {
+       output.user = await jwt.verify(token, accessTokenSecret, (err, user) => {
         if (err) {
             return null;
         }
         return {user};
     });
     }
-
+    return output;
+    
   },
   plugins: [
     // Install a landing page plugin based on NODE_ENV
