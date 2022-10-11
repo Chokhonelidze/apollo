@@ -111,7 +111,7 @@ const server = new ApolloServer({
     // Install a landing page plugin based on NODE_ENV
     process.env.NODE_ENV === "production"
       ? ApolloServerPluginLandingPageProductionDefault({
-          graphRef: "My-Graph-zz9m3@current",
+          graphRef: "myApollo-dxt46h@current",
           footer: false,
         })
       : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
