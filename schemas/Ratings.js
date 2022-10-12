@@ -10,7 +10,7 @@ input createInputRating{
     rating:Int
 }
 input inputRating {
-    type:String
+    type: String
 }
 
 `;
